@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -12,21 +10,14 @@ use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
-
     /**
-     * List of applications to add.
+     * List of permissions to add.
      */
     private $permissions = [
-        'role-list',
-        'role-create',
-        'role-edit',
-        'role-delete',
-        'product-list',
-        'product-create',
-        'product-edit',
-        'product-delete'
+        'Dashboard_admin',
+        'Add_Category',
+        'List_evenements',
     ];
-
 
     /**
      * Seed the application's database.
@@ -41,7 +32,9 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'Prevail Ejimadu',
             'email' => 'test@example.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+            'statue' => 1
         ]);
 
         $role = Role::create(['name' => 'Admin']);
@@ -51,5 +44,19 @@ class DatabaseSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+
+        $organizerPermissions = [
+            'Dashboard_Organisateur',
+            'Add_Events',
+            'List_reservations',
+        ];
+
+        foreach ($organizerPermissions as $organizerPermission) {
+            Permission::create(['name' => $organizerPermission]);
+        }
+
+        $organizerRole = Role::create(['name' => 'Organisateur']);
+        $organizerPermissionsToAssign = Permission::whereIn('name', $organizerPermissions)->pluck('id')->toArray();
+        $organizerRole->syncPermissions($organizerPermissionsToAssign);
     }
 }

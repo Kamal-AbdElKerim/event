@@ -41,6 +41,8 @@
     </div>
     <nav class="sidebar-nav">
       <ul>
+        @can('Dashboard_admin')
+            
         <li class="nav-item {{ (Route::currentRouteName() == 'Dashboard') ? 'active' : '' }}">
           <a href="{{ route('Dashboard_admin') }}">
             <span class="icon">
@@ -52,6 +54,9 @@
             <span class="text">Dashboard admin</span>
           </a>
         </li>
+        @endcan
+        @can('Dashboard_Organisateur')
+
         <li class="nav-item {{ (Route::currentRouteName() == 'Dashboard') ? 'active' : '' }}">
           <a href="{{ route('Dashboard_Organisateur') }}">
             <span class="icon">
@@ -63,7 +68,10 @@
             <span class="text">Dashboard Organisateur</span>
           </a>
         </li>
+        @endcan
 
+        @can('Add_Category')
+            
         <li class="nav-item {{ (Route::currentRouteName() == 'form_Add_Category') ? 'active' : '' }}">
           {{-- @can('role-list') --}}
           <a  href="{{ route('form_Add_Category') }}">
@@ -81,8 +89,12 @@
           </a>
           {{-- @endcan --}}
         </li>
+        @endcan
+        @can('Add_Events')
+            
+        
         <li class="nav-item {{ (Route::currentRouteName() == 'form_Add_Events') ? 'active' : '' }}">
-          {{-- @can('role-list') --}}
+        
           <a href="{{ route('form_Add_Events') }}">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,8 +108,12 @@
              Add Events <span class="pro-badge">Pro</span>
             </span>
           </a>
-          {{-- @endcan --}}
+        
         </li>
+        @endcan
+        @can('List_reservations')
+            
+      
         <li class="nav-item {{ (Route::currentRouteName() == 'List_reservations') ? 'active' : '' }}">
           {{-- @can('role-list') --}}
           <a href="{{ route('List_reservations') }}">
@@ -115,6 +131,10 @@
           </a>
           {{-- @endcan --}}
         </li>
+        @endcan
+        @can('List_Users')
+            
+      
         <li class="nav-item {{ (Route::currentRouteName() == 'List_Users') ? 'active' : '' }}">
           {{-- @can('role-list') --}}
           <a href="{{ route('List_Users') }}">
@@ -132,8 +152,12 @@
           </a>
           {{-- @endcan --}}
         </li>
+        @endcan
+        @can('List_evenements')
+            
+        
         <li class="nav-item {{ (Route::currentRouteName() == 'List_evenements') ? 'active' : '' }}">
-          {{-- @can('role-list') --}}
+        
           <a href="{{ route('List_evenements') }}">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,9 +171,9 @@
               List Evenements <span class="pro-badge">Pro</span>
             </span>
           </a>
-          {{-- @endcan --}}
+      
         </li>
-     
+        @endcan
    
   
       </ul>

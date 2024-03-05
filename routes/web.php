@@ -22,7 +22,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('Front.index');
-});
+})->name('home');
 
 
 
@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/form_Add_Category', [CategorieController::class, 'form_Add_Category'])->name('form_Add_Category');
+    Route::post('/add_Category', [CategorieController::class, 'add_Category'])->name('add_Category');
+    Route::post('/delete_categorie/{id}', [CategorieController::class, 'delete_categorie'])->name('delete_categorie');
+    Route::get('/form_update_categorie/{id}', [CategorieController::class, 'form_update_categorie'])->name('form_update_categorie');
+    Route::post('/update_Category/{id}', [CategorieController::class, 'update_Category'])->name('update_Category');
+    
 
     Route::get('/List_reservations', [ReservationController::class, 'List_reservations'])->name('List_reservations');
 

@@ -31,18 +31,17 @@
     <div class="container">
        <div class="row justify-content-center">
           <div class="col-lg-5">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+
+   
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
             </div>
         @endif
+        
             
-                  <form method="POST" action="{{ route('subment_Reste_Passwored') }}">
-                     @csrf
+        <form method="POST" action="{{ route('password.email') }}">
+         @csrf
 
                 <div class="signin-form form-style-two rounded-buttons">
                    <div class="row">
@@ -58,6 +57,13 @@
                          </div>
                          <!-- form input -->
                       </div>
+                      @if ($errors->has('email'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ $errors->first('email') }}
+                      </div>
+                  @endif
+                  
+
                  
                 
 

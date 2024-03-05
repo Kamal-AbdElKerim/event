@@ -99,6 +99,16 @@
                            @guest
                            <a href="{{ route('login') }}" class="btn">Login<i class="fa-solid fa-arrow-right-to-bracket"></i></a>     
                            @endguest
+                           @auth
+                       
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                          <a class="btn" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                              <i class="lni lni-exit me-2"></i> Sign Out
+                          </a>
+
+                           @endauth
                           </div>
                       </nav>
                       <!-- End Navbar -->

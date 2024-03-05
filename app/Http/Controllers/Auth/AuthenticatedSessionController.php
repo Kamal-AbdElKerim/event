@@ -31,12 +31,17 @@ class AuthenticatedSessionController extends Controller
           
         $user = Auth()->user();
 
-       if ($user->role === "admin") {
-        return redirect()->route('Dashboard_admin')->with("flash_message" , "Welcome  $user->name");
+   
+        if ($user->role === "admin") {
+            return redirect()->route('Dashboard_admin')->with("flash_message" , "Welcome  $user->name");
+    
+           } elseif ($user->role === "Organisateur") {
 
-       }else {
-        return redirect()->route('Dashboard_Organisateur')->with("flash_message" , "Welcome  $user->name") ;
-       }
+            return redirect()->route('Dashboard_Organisateur')->with("flash_message" , "Welcome  $user->name") ;
+
+        }else {
+            return redirect()->route('home')->with("flash_message" , "Welcome  $user->name") ;
+        } 
 
     }
 
