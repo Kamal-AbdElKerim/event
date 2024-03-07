@@ -71,18 +71,18 @@
                     {{-- <a class="text-danger " href="{{ route('delete_categorie',$categorie->id) }}"><i class="lni lni-trash-can"></i></a> --}}
 
                     <button type="buttom" class="text-danger"
-                                                title="Delete Student" onclick="confirmDelete()">
+                                                title="Delete Student" onclick="confirmDelete({{ $categorie->id }})">
 
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i> 
                                             </button>
-                                                <form method="POST" id="formSubmit" action="{{ route('delete_categorie',$categorie->id) }}"
+                                                <form method="POST" id="formSubmit_{{ $categorie->id }}" action="{{ route('delete_categorie',$categorie->id) }}"
                                                     accept-charset="UTF-8" style="display:inline">
                                                     @csrf
 
                                                 
                                                     <script type="text/javascript">
                                                 
-                                                        function confirmDelete() {
+                                                        function confirmDelete(categorieId) {
                                                             Swal.fire({
                                                                 title: 'Are you sure?',
                                                                 text: "You won't be able to revert this!",
@@ -92,7 +92,7 @@
                                                                 cancelButtonColor: '#d33',
                                                                 confirmButtonText: 'Yes, delete it!',
                                                                 preConfirm: () => {
-                                                                    document.getElementById('formSubmit').submit(); 
+                                                                    document.getElementById("formSubmit_" + categorieId).submit(); 
     }
                                                             }).then((result) => {
                                                                 if (result.isConfirmed) {

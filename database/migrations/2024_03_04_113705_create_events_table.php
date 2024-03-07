@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('date');
-            $table->string('location');
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->integer('seats_available');
+            $table->dateTime('Date_start');
+            $table->dateTime('Date_end');
+            $table->string('city');
+            $table->unsignedBigInteger('category_id');
+            $table->integer('Nombre_De_Places');
             $table->unsignedBigInteger('organizer_id');
-            $table->enum('reservation_approval', ['automatic', 'manual'])->default('automatic');
             $table->enum('validation_status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('organizer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

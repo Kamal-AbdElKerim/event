@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('Front.SignUp');
+        return view('Front.auth.SignUp');
     }
 
     /**

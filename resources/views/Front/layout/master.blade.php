@@ -47,7 +47,7 @@
                       <!-- Start Navbar -->
                       <nav class="navbar navbar-expand-lg">
                           <a class="navbar-brand" href="index.html">
-                              <img src="assets/images/logo/logo.svg" alt="Logo">
+                              <img src=" {{URL::asset('assets/images/logo/logo.svg')}}" alt="Logo">
                           </a>
                           <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -59,7 +59,7 @@
                           <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                               <ul id="nav" class="navbar-nav ms-auto">
                                   <li class="nav-item">
-                                      <a href="index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                      <a href="{{ route('home') }}" class="{{ (Route::currentRouteName() == 'home') ? 'active' : '' }}" aria-label="Toggle navigation">Home</a>
                                   </li>
                                   <li class="nav-item">
                                       <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -74,8 +74,10 @@
                                           <li class="nav-item"><a href="404.html">404 Error</a></li>
                                       </ul>
                                   </li>
-                                  <li class="nav-item">
-                                      <a href="schedule.html" aria-label="Toggle navigation">Schedule</a>
+                                  
+                                    <li class="nav-item">
+
+                                      <a href="{{ route('events') }}" class="{{ (Route::currentRouteName() == 'events') ? 'active' : '' }}" aria-label="Toggle navigation">Events</a>
                                   </li>
                                   <li class="nav-item">
                                       <a href="speakers.html" aria-label="Toggle navigation">Speakers</a>
@@ -178,7 +180,7 @@
                           <div class="single-footer f-about">
                               <div class="logo">
                                   <a href="index.html">
-                                      <img src="assets/images/logo/dark-logo.svg" alt="#">
+                                      <img src="{{URL::asset('assets/images/logo/dark-logo.svg')}}" alt="#">
                                   </a>
                               </div>
                               <p>A business conference organize by EventGrids In. World’s most influential media,
@@ -275,13 +277,16 @@
   </a>
 
    <!-- ========================= JS here ========================= -->
-   <script src="assets/js/bootstrap.min.js"></script>
-   <script src="assets/js/wow.min.js"></script>
-   <script src="assets/js/tiny-slider.js"></script>
-   <script src="assets/js/glightbox.min.js"></script>
-   <script src="assets/js/count-up.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+   <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/wow.min.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/tiny-slider.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/glightbox.min.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/count-up.min.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/main.js') }}"></script>
+   
    <script src="https://kit.fontawesome.com/e9ea9ee727.js" crossorigin="anonymous"></script>
-   <script src="assets/js/main.js"></script>
         @yield('js')
    <script>
        //========= glightbox
@@ -323,8 +328,8 @@
            }
        });
    </script>
-   <script>
-       const finaleDate = new Date("February 15, 2025 00:00:00").getTime();
+   {{-- <script>
+       const finaleDate = new Date({{ $event->Date_start}}).getTime();
 
        const timer = () => {
            const now = new Date().getTime();
@@ -353,7 +358,7 @@
        }
        timer();
        setInterval(timer, 1000);
-   </script>
+   </script> --}}
 </body>
 
 </html>

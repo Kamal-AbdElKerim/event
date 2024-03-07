@@ -1783,7 +1783,7 @@ h6,
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 20px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;

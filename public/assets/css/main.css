@@ -2270,9 +2270,9 @@ ol {
 
 .count-down .box-head {
   position: relative;
-  margin-top: -115px;
+  margin-top: -110px;
   border: 1px solid rgba(238, 238, 238, 0.219);
-  border-radius: 15px;
+  border-radius: 35px;
   background-color: rgba(255, 255, 255, 0.507);
   padding: 12px;
   -webkit-box-shadow: 0px 0px 30px #00000017;
@@ -4320,6 +4320,7 @@ ol {
   margin-bottom: 30px;
   font-weight: 600;
   line-height: 28px;
+  color: #edc781;
 }
 
 blockquote {
@@ -4386,7 +4387,7 @@ blockquote h4 {
 blockquote span {
   font-size: 15px;
   display: block;
-  margin-top: 20px;
+  margin-top: 5px;
   color: #fff;
 }
 
@@ -5679,4 +5680,14 @@ blockquote span {
 
 .footer .copyright .copyright-text a:hover {
   color: #F20487;
+}
+
+
+
+.custom-button{
+  border: none;
+  background: none;
+  /* Optionally, you can add additional styles like padding and color */
+  padding: 5px 10px;
+  color: black;
 }

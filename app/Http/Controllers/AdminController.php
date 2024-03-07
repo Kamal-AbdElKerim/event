@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin;
+use App\Models\event;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,24 +29,33 @@ class AdminController extends Controller
      */
     public function List_evenements()
     {
-        return view('Dashboard.evenements');
+        $events = event::all();
+        return view('Dashboard.evenement.evenements',compact('events'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function approved_event($id)
     {
-        //
+        $event = event::findOrFail($id);
+        $event->validation_status = 'approved'; 
+        $event->save();
+    
+        return redirect()->back()->with("flash_message", $event->title . " has been approved");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(admin $admin)
+    public function rejected_event($id)
     {
-        //
+        $event = event::findOrFail($id);
+        $event->validation_status = 'rejected'; 
+        $event->save();
+    
+        return redirect()->back()->with("flash_message", $event->title . " has been rejected");
     }
 
     /**
