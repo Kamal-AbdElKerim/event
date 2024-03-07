@@ -85,7 +85,7 @@
             </table>
             <!-- end table -->
           </div>
-          <div class="pagination">
+          <div class="pagination mt-2">
             {{ $reservations->links() }}
 
 

@@ -79,6 +79,10 @@
 
                                       <a href="{{ route('events') }}" class="{{ (Route::currentRouteName() == 'events') ? 'active' : '' }}" aria-label="Toggle navigation">Events</a>
                                   </li>
+                                    <li class="nav-item">
+
+                                      <a href="{{ route('my_resrvation') }}" class="{{ (Route::currentRouteName() == 'my_resrvation') ? 'active' : '' }}" aria-label="Toggle navigation">My resrvation</a>
+                                  </li>
                                   <li class="nav-item">
                                       <a href="speakers.html" aria-label="Toggle navigation">Speakers</a>
                                   </li>

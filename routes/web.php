@@ -45,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
+    Route::get('/my_resrvation', [UserController::class, 'my_resrvation'])->name('my_resrvation');
+
+
     Route::get('/List_Users', [AdminController::class, 'List_Users'])->name('List_Users');
     Route::get('/Dashboard/admin', [AdminController::class, 'Dashboard'])->name('Dashboard_admin');
     Route::get('/List_evenements', [AdminController::class, 'List_evenements'])->name('List_evenements');

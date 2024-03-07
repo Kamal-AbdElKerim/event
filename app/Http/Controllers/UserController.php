@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
     
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\reservation;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
    
+    public function my_resrvation()
+    {
+        $reservations = Reservation::latest()
+        ->where('user_id', auth()->id())
+        ->paginate(10);        
+        
+        return view('Front.Mon_resrvation',compact('reservations'));
+    }
+
     public function index(Request $request)
     {
         $data = User::latest()->paginate(5);

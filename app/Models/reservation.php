@@ -15,4 +15,14 @@ class reservation extends Model
         'quantity',
         'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function events()
+    {
+        return $this->belongsTo(event::class,'event_id');
+    }
 }
