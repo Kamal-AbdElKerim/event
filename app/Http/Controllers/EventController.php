@@ -18,13 +18,35 @@ class EventController extends Controller
     {
        return view('Dashboard.Dashboard_Organisateur');
     }
+    public function Ajax_Search(Request $request)
+    {
+        if ($request->ajax()) {
+            $searchByTitle = $request->SearchByTiltle;
+    
+            $category = Categorie::where("name", "like", "%{$searchByTitle}%")->first();
+    
+            if (empty($category)) {
+                $events = event::where("title", "like", "%{$searchByTitle}%")->orderBy("id", "desc")->paginate(4);
+            } else {
+                $events = event::where("category_id", "=", $category->id)->orderBy("id", "desc")->paginate(4);
+            }
+    
+            if (empty($searchByTitle)) {
+                $events = event::orderBy("id", "desc")->paginate(4);
+    
+            }
+    
+            return view('Front.ajax.event_ajax', compact('events'));
+        }
+    }
 
 
     public function events()
     {
-        $events = Event::where('validation_status', 'approved')->paginate(5);
+        $events = event::where('validation_status', 'approved')->paginate(2);
+        $categories = categorie::all();
 
-        return view('Front.events', compact('events'));
+        return view('Front.events', compact('events','categories'));
     }
 
     public function events_single($id)

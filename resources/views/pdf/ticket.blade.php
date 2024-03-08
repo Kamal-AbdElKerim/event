@@ -190,14 +190,11 @@ h3 {
                         <span>end   :  {{ date("d M Y", strtotime($reservation->events->Date_end)) }} {{ \Carbon\Carbon::parse($reservation->events->Date_end)->format('H:i:s') }}</span>
                     </div>
                 </div>
-                <div class="content name">
-                    <h3>Name Of Passenger</h3>
-                    <p>JAKE SALVATORE</p>
-                </div>
+              
            
-            
+
                 <div class="scan">
-                    <img src="https://chart.googleapis.com/chart?cht=qr&chl=UA%201136%2098745-34538459&chs=180x180&choe=UTF-8&chld=L|2" alt="">
+                    <img src="data:image/png;base64,{{ base64_encode($qrCode) }}" alt="QR Code">
                 </div>
             </div>
     
@@ -205,14 +202,14 @@ h3 {
     
             <div class="left-side">
                 <div class="airline">
-                    AIRLINE NAME
+                    info 
                 </div>
                 <div class="name">
-                    <h3>Name Of Passenger</h3>
-                    <p>JAKE SALVATORE</p>
+                    <h3>code</h3>
+                    <p>#2458963188587856</p>
                 </div>
                 <div class="from">
-                    <h3>From</h3>
+                    <h3>city</h3>
                     <p>{{ $reservation->events->city }}</p>
                 </div>
                 <div class="from">

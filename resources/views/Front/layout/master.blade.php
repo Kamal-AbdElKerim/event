@@ -19,7 +19,11 @@
     <link href="{{URL::asset('assets/css/main.css')}}" rel="stylesheet"/>
     <link href="{{URL::asset('assets/css/css_form.css')}}" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+  <style>
+       .hidden {
+        display: none;
+    }
+  </style>
     @yield('css')
 
 
@@ -284,6 +288,7 @@
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
    <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+   <script src="{{ URL::asset('assets/js/jquery-3.7.1.min.js') }}"></script>
    <script src="{{ URL::asset('assets/js/wow.min.js') }}"></script>
    <script src="{{ URL::asset('assets/js/tiny-slider.js') }}"></script>
    <script src="{{ URL::asset('assets/js/glightbox.min.js') }}"></script>

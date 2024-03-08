@@ -32,6 +32,9 @@ Route::get('/', function () {
 Route::get('/events', [EventController::class, 'events'])->name('events');
 Route::get('/events_single/{id}', [EventController::class, 'events_single'])->name('events_single');
 
+Route::post('/AjaxSearch', [EventController::class , "Ajax_Search"])->name('Ajax_Search');
+// Route::get('/AjaxSearch/{title}', [PostController::class , "AjaxSearch_categoary"])->name('Ajax_Search_catgory');
+
 Route::get('/Reste_Passwored', [Forgotten_passwordController::class, 'Reste_Passwored'])->name('Reste_Passwored');
 Route::post('/subment_Reste_Passwored', [Forgotten_passwordController::class, 'subment_Reste_Passwored'])->name('subment_Reste_Passwored');
 
