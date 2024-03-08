@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\EventController;
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\Forgotten_passwordController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Forgotten_passwordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
 
     Route::get('/my_resrvation', [UserController::class, 'my_resrvation'])->name('my_resrvation');
+    Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('generatePDF');
+
 
 
     Route::get('/List_Users', [AdminController::class, 'List_Users'])->name('List_Users');

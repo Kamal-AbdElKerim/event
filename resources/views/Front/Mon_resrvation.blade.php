@@ -80,7 +80,7 @@
                                             @if ($reservation->status === 0)
                                             <button disabled class="btn">être accepté</button>
                                             @else
-                                            <a class="btn" href="{{ route('events_single',$reservation->id) }}">Générer un ticket </a>
+                                            <a class="btn" href="{{ route('generatePDF',$reservation->id) }}" target="_blank">Générer un ticket</a>
                                             @endif
                                         </div>
                                     </div>
@@ -89,13 +89,21 @@
                             <!-- End Single Event -->
                             @endforeach
                         </div>
+                        <div class="pagination">
+                            {{ $reservations->links() }}
+                
+                
+                        </div>
+                        </div>
                         <!-- End Events Head -->
+                        
                     </div>
                 
+                 
                 </div>
                 <!-- End Events Schedule Tab -->
             </div>
-        </div>
+       
         <div class="row">
             <div class="col-12 align-center">
                 <div class="button details-button">

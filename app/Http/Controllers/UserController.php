@@ -18,8 +18,8 @@ class UserController extends Controller
     {
         $reservations = Reservation::latest()
         ->where('user_id', auth()->id())
-        ->paginate(10);        
-        
+        ->paginate(5);        
+
         return view('Front.Mon_resrvation',compact('reservations'));
     }
 
