@@ -1,6 +1,8 @@
 @extends('Dashboard.layout_Dashboard.master')
 
-
+@section('title')
+      List Reservations
+@endsection
 
 @section('content')
 

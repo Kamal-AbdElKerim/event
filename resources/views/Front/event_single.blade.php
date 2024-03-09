@@ -108,7 +108,13 @@
 
                                         <div class="input-group w-25 ">
                                           <button class="btn btn-outline-secondary" type="button" id="subtractBtn">-</button>
-                                          @if ($event->Nombre_De_Places - $totalQuantity->TotalQuantity == 0)
+                                          @php
+                                              date_default_timezone_set('Africa/Casablanca');
+                                              $localDateTime = date('Y-m-d H:i:s');
+
+
+                                          @endphp
+                                          @if ($event->Nombre_De_Places - $totalQuantity->TotalQuantity == 0 || $event->Date_end <= $localDateTime)
                                           <input type="text" class="form-control text-center" id="quantityInput" value="Out of stock" readonly>
 
                                           @else
@@ -120,7 +126,7 @@
                                     
                                     </div>
                                     <div class="button d-flex  justify-content-center mt-3">
-                                @if ($event->Nombre_De_Places - $totalQuantity->TotalQuantity == 0)
+                                @if ($event->Nombre_De_Places - $totalQuantity->TotalQuantity == 0 || $event->Date_end <= $localDateTime)
                                 <button disabled type="submit" class="btn">Get Tickets<i class="lni lni-ticket"></i></button>
                                  @else
                                  <button type="submit" class="btn">Get Tickets<i class="lni lni-ticket"></i></button>

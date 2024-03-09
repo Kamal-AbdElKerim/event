@@ -104,13 +104,7 @@
                 <!-- End Events Schedule Tab -->
             </div>
        
-        <div class="row">
-            <div class="col-12 align-center">
-                <div class="button details-button">
-                    <a href="schedule.html" class="btn btn-alt">Load More</a>
-                </div>
-            </div>
-        </div>
+  
     </div>
 </section>
 <!-- End Events Schedule Area -->

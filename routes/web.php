@@ -54,11 +54,13 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/List_Users', [AdminController::class, 'List_Users'])->name('List_Users');
+    // Route::get('/List_Users', [AdminController::class, 'List_Users'])->name('List_Users');
     Route::get('/Dashboard/admin', [AdminController::class, 'Dashboard'])->name('Dashboard_admin');
     Route::get('/List_evenements', [AdminController::class, 'List_evenements'])->name('List_evenements');
     Route::get('/approved_event/{id}', [AdminController::class, 'approved_event'])->name('approved_event');
     Route::get('/rejected_event/{id}', [AdminController::class, 'rejected_event'])->name('rejected_event');
+    Route::get('/delete_user/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
+    Route::get('/restore_user/{id}', [AdminController::class, 'restore_user'])->name('restore_user');
 
 
     Route::get('/form_Add_Category', [CategorieController::class, 'form_Add_Category'])->name('form_Add_Category');

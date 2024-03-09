@@ -2,34 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\admin;
 use App\Models\event;
+use App\Models\categorie;
+use App\Models\reservation;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+     
+        $this->middleware(['permission:Dashboard_admin']);
+        // $this->middleware(['permission:chose_abonnement'], ['only' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
+    }
+
     public function Dashboard()
     {
-        return view('Dashboard.Dashboard_Admin');
+        $users = User::withTrashed()->where('role','User')->paginate(10);
+        $events = event::all();
+        $reservations = reservation::all();
+        $categories = categorie::all();
+        return view('Dashboard.Dashboard_Admin', compact('users','events','reservations','categories'));
 
     }
 
 
-    public function List_Users()
-    {
-        return view('Dashboard.List_Users');
+    // public function List_Users()
+    // {
+    //     return view('Dashboard.List_Users');
 
-    }
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function List_evenements()
     {
-        $events = event::all();
+        $events = Event::latest()->get();
         return view('Dashboard.evenement.evenements',compact('events'));
 
     }
@@ -58,27 +71,22 @@ class AdminController extends Controller
         return redirect()->back()->with("flash_message", $event->title . " has been rejected");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(admin $admin)
-    {
-        //
+    public function delete_user($id){
+
+        User::find($id)->delete();
+
+        return redirect()->back()->with("flash_message",  "access is lock");
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, admin $admin)
-    {
-        //
+    public function restore_user($id){
+
+        $record = User::withTrashed()->find($id);
+        $record->restore();
+
+        return redirect()->back()->with("flash_message",  "access is unlock");
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(admin $admin)
-    {
-        //
-    }
+ 
 }

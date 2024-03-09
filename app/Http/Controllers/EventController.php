@@ -11,29 +11,50 @@ use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
+    function __construct()
+    {
+     
+        // $this->middleware(['permission:Add_Events'],['except' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
+        $this->middleware(['permission:Add_Events'], ['only' => ['Dashboard','form_Add_Events','add_event','form_update_event','Update_event','delete_event']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
+    }
+    
     public function Dashboard()
     {
-       return view('Dashboard.Dashboard_Organisateur');
+        $reservations = reservation::join('events', 'reservations.event_id', '=', 'events.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->where('events.organizer_id', auth()->id())
+        ->select('reservations.*', 'events.title','users.name','users.reservation_approval')
+        ->orderBy('reservations.created_at', 'desc')
+        ->paginate(8);
+        $reservations_conut = reservation::join('events', 'reservations.event_id', '=', 'events.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->where('events.organizer_id', auth()->id())
+        ->select('reservations.*', 'events.title','users.name','users.reservation_approval')
+        ->orderBy('reservations.created_at', 'asc')
+        ->get();
+        // dd($reservations_conut->quantity);
+       return view('Dashboard.Dashboard_Organisateur',compact('reservations','reservations_conut'));
     }
     public function Ajax_Search(Request $request)
     {
         if ($request->ajax()) {
             $searchByTitle = $request->SearchByTiltle;
-    
+            $page = 1 ;
             $category = Categorie::where("name", "like", "%{$searchByTitle}%")->first();
     
             if (empty($category)) {
-                $events = event::where("title", "like", "%{$searchByTitle}%")->orderBy("id", "desc")->paginate(4);
+                $events = event::where("title", "like", "%{$searchByTitle}%")->where('validation_status', 'approved')->orderBy("id", "desc")->paginate($page);
             } else {
-                $events = event::where("category_id", "=", $category->id)->orderBy("id", "desc")->paginate(4);
+                $events = event::where("category_id", "=", $category->id)->where('validation_status', 'approved')->orderBy("id", "desc")->paginate($page);
             }
     
             if (empty($searchByTitle)) {
-                $events = event::orderBy("id", "desc")->paginate(4);
-    
+                $events = Event::orderBy("id", "desc")
+                ->where('validation_status', 'approved')
+                ->paginate($page);    
             }
     
             return view('Front.ajax.event_ajax', compact('events'));
@@ -43,7 +64,7 @@ class EventController extends Controller
 
     public function events()
     {
-        $events = event::where('validation_status', 'approved')->paginate(2);
+        $events = event::where('validation_status', 'approved')->paginate(3);
         $categories = categorie::all();
 
         return view('Front.events', compact('events','categories'));

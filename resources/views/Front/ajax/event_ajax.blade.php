@@ -55,7 +55,7 @@
                     {{-- Pagination Elements --}}
                     @for ($page = 1; $page <= $events->lastPage(); $page++)
                         @if ($page == $events->currentPage())
-                            <li class="active"><span>{{ $page }}</span></li>
+                            <li class="activee"><span>{{ $page }}</span></li>
                         @else
                             <li><a href="{{ $events->url($page) }}">{{ $page }}</a></li>
                         @endif

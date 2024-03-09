@@ -1,7 +1,7 @@
 @extends('Front.layout.master')
-
-
-
+@section('title')
+    Events
+@endsection
 @section('contant')
 
 
@@ -53,29 +53,30 @@
                 <!-- Start Events Schedule Tab -->
                 <ul class="nav nav-tabs  d-flex  justify-content-start" id="myTab" role="tablist">
                    
-                        {{-- <div class="input-group mb-3 w-25 ">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input id="SearchByTiltle" type="text" class="form-control" placeholder="Search Here..." aria-label="Username" aria-describedby="basic-addon1">
-                          </div> --}}
                         <div class="input-group mb-3 w-25 ">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input id="searchInput" type="text" class="form-control" placeholder="Search Here..." aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input id="SearchByTiltle" type="text" class="form-control" placeholder="Search Here..." aria-label="Username" aria-describedby="basic-addon1">
                           </div>
+                     
                     
                 </ul>
            
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="one" role="tabpanel" aria-labelledby="one-tab">
                         <!-- Start Events Head -->
-                        <div class="events-head" id="ajax_events">
+                        <div class="events-head"  id="ajax_events">
                             @foreach ($events as $event)
+                                
+                         
                             <!-- Start Single Event -->
-                            <div class="single-event">  
+                            <div class="single-event">
                                 <div class="row align-items-center">
                                     <div class="col-lg-3 col-md-3 col-12">
                                         <div class="date">
+                                            {{-- <h2>{{ $event->Nombre_De_Places }} </h2> --}}
                                             <p class="me-5 text-center align-items-center ">{{ $event->Nombre_De_Places }}<span>Tickets</span></p>
-                                            <p>{{ date("Y-m-d", strtotime($event->Date_start)) }}<span>{{ date("Y-m-d", strtotime($event->Date_end)) }}</span></p>
+
+                                            <p >{{  date("Y-m-d", strtotime($event->Date_start)) }}<span>{{  date("Y-m-d", strtotime($event->Date_end)) }}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-12">
@@ -107,6 +108,32 @@
                             </div>
                             <!-- End Single Event -->
                             @endforeach
+                            <div class="pagination left blog-grid-page" >
+                                <ul class="pagination-list">
+                                    {{-- Previous Page Link --}}
+                                    @if ($events->onFirstPage())
+                                        <li class="disabled"><span>Prev</span></li>
+                                    @else
+                                        <li><a href="{{ $events->previousPageUrl() }}">Prev</a></li>
+                                    @endif
+                            
+                                    {{-- Pagination Elements --}}
+                                    @for ($page = 1; $page <= $events->lastPage(); $page++)
+                                        @if ($page == $events->currentPage())
+                                            <li class="activee"><span>{{ $page }}</span></li>
+                                        @else
+                                            <li><a href="{{ $events->url($page) }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endfor
+                            
+                                    {{-- Next Page Link --}}
+                                    @if ($events->hasMorePages())
+                                        <li><a href="{{ $events->nextPageUrl() }}">Next</a></li>
+                                    @else
+                                        <li class="disabled"><span>Next</span></li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                         <!-- End Events Head -->
                     </div>
@@ -132,33 +159,6 @@
 
     @endsection
 @section('js')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    
-
-    let events = []
-
-  setTimeout(() => {
-    events  = document.querySelectorAll('.single-event');
-    console.log(events)
-  }, 1000);
-  
-    searchInput.addEventListener('input', function () {
-        const query = searchInput.value.trim().toLowerCase();
-        // console.log(query)
-        events.forEach(function (event) {
-            const title = event.querySelector('.info h4 a').textContent.toLowerCase();
-            console.log(title)
-            if (title.includes(query)) {
-                event.classList.remove('hidden');
-            } else {
-                event.classList.add('hidden');
-            }
-        });
-    });
-});
-</script>
 <script>
     $(document).ready(function(){
         searchByTitle('');

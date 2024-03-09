@@ -20,9 +20,26 @@
     <link href="{{URL::asset('assets/css/css_form.css')}}" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-       .hidden {
-        display: none;
-    }
+ .disabled{
+  
+  padding: 8px 20px ;
+  /* margin: 4px; */
+  background-color: rgb(211, 220, 220);
+  cursor: not-allowed;
+
+}
+.activee{
+    padding: 8px 20px ;
+  /* margin: 4px; */
+  background-color: rgb(211, 220, 220);
+  cursor: not-allowed; 
+}
+.active:hover{
+  /* background-color: #723FE4; */
+  /* padding: 8px 20px ; */
+  /* margin: 4px; */
+  /* color: white; */
+}
   </style>
     @yield('css')
 
@@ -65,44 +82,21 @@
                                   <li class="nav-item">
                                       <a href="{{ route('home') }}" class="{{ (Route::currentRouteName() == 'home') ? 'active' : '' }}" aria-label="Toggle navigation">Home</a>
                                   </li>
-                                  <li class="nav-item">
-                                      <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                          data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
-                                          aria-expanded="false" aria-label="Toggle navigation">Pages</a>
-                                      <ul class="sub-menu collapse" id="submenu-1-1">
-                                          <li class="nav-item"><a href="about-us.html">About Us</a></li>
-                                          <li class="nav-item"><a href="gallery.html">Gallery</a></li>
-                                          <li class="nav-item"><a href="pricing.html">Pricing</a></li>
-                                          <li class="nav-item"><a href="sponsors.html">Sponsors</a></li>
-                                          <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-                                          <li class="nav-item"><a href="404.html">404 Error</a></li>
-                                      </ul>
-                                  </li>
+                            
                                   
                                     <li class="nav-item">
 
                                       <a href="{{ route('events') }}" class="{{ (Route::currentRouteName() == 'events') ? 'active' : '' }}" aria-label="Toggle navigation">Events</a>
                                   </li>
+                                  @auth
+                                      
+                                
                                     <li class="nav-item">
 
                                       <a href="{{ route('my_resrvation') }}" class="{{ (Route::currentRouteName() == 'my_resrvation') ? 'active' : '' }}" aria-label="Toggle navigation">My resrvation</a>
                                   </li>
-                                  <li class="nav-item">
-                                      <a href="speakers.html" aria-label="Toggle navigation">Speakers</a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                          data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                          aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                      <ul class="sub-menu collapse" id="submenu-1-2">
-                                          <li class="nav-item"><a href="blog-grid.html">Blog Grid</a>
-                                          </li>
-                                          <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-                                      </ul>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a href="contact.html" aria-label="Toggle navigation">Contact</a>
-                                  </li>
+                               
+                                  @endauth
                               </ul>
                           </div> <!-- navbar collapse -->
                           <div class="button">
@@ -264,15 +258,7 @@
       <!-- Start Copyright Area -->
       <div class="copyright">
           <div class="container">
-              <div class="inner-content">
-                  <div class="row">
-                      <div class="col-12">
-                          <p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/"
-                                  rel="nofollow" target="_blank">GrayGrids</a>
-                          </p>
-                      </div>
-                  </div>
-              </div>
+            
           </div>
       </div>
       <!-- End Copyright Area -->

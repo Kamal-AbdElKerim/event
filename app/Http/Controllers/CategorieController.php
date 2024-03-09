@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
+
+    function __construct()
+    {
+     
+        $this->middleware(['permission:Add_Category']);
+        // $this->middleware(['permission:chose_abonnement'], ['only' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -89,19 +98,4 @@ class CategorieController extends Controller
     }
     
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, categorie $categorie)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(categorie $categorie)
-    {
-        //
-    }
 }
