@@ -102,7 +102,6 @@ class ReservationController extends Controller
      */
     public function change_Switch(Request $request)
     {
-        // Validate the request data
         $request->validate([
             'reservation_approval' => 'required|in:automatic,manual'
         ]);

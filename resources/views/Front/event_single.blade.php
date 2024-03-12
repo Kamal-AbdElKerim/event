@@ -10,10 +10,10 @@
         <div class="row align-items-center">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                 <div class="breadcrumbs-content">
-                    <h1 class="page-title">Blog Single Sidebar</h1>
+                    <h1 class="page-title">Event Single Sidebar</h1>
                     <ul class="breadcrumb-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li>Blog Single Sidebar</li>
+                        <li>Event Single Sidebar</li>
                     </ul>
                 </div>
             </div>
@@ -30,6 +30,7 @@
                 <div class="single-inner">
                     <div class="post-details">
                         <div class="main-content-head">
+                           
                            
                             <div class="meta-information">
                                 <h2 class="post-title">{{ $event->title }}

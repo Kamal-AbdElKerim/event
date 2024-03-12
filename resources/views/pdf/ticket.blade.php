@@ -24,6 +24,7 @@ html {
 	justify-content: center;
 	position: relative;
 	min-height: 100vh;
+	
 	/* background: #ccc; */
 }
 h1,
@@ -46,6 +47,8 @@ h3 {
 	border-radius: 20px;
 	overflow: hidden;
 	position: relative;
+	margin-bottom: 150px ;
+
 }
 .ticket::before {
 	content: "";
@@ -54,7 +57,9 @@ h3 {
 	height: 100%;
     top: 200px;
 	width: 10px;
-	background: #f21b38;
+	/* background: #f21b38; */
+	/* margin-bottom: 150px ; */
+
 }
 .ticket::after {
 	content: "";
@@ -63,7 +68,9 @@ h3 {
 	height: 10px;
     
 	width: 100%;
-	background: #f21b38;
+	/* background: #f21b38; */
+	margin-bottom: 150px ;
+
 }
 .block {
 	width: 470px;
@@ -178,7 +185,16 @@ h3 {
 </head>
 <body>
     
-   
+		
+	<?php
+	for ($i = 0; $i < $reservation->quantity; $i++) {
+		$randomCode = rand(1000000000000000, 9999999999999999);
+
+	?>
+
+
+		
+	
 
         <div class="ticket">
             <div class="block">
@@ -206,7 +222,7 @@ h3 {
                 </div>
                 <div class="name">
                     <h3>code</h3>
-                    <p>#2458963188587856</p>
+					<p>#<?php echo $randomCode; ?></p>
                 </div>
                 <div class="from">
                     <h3>city</h3>
@@ -228,7 +244,9 @@ h3 {
             </div>
         </div>
     
- 
+		<?php
+	}
+	?>
 
 </body>
 </html>

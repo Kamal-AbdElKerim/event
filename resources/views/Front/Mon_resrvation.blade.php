@@ -71,6 +71,9 @@
                                                     <li><i class="lni lni-map-marker"></i>
                                                         <a href="javascript:void(0)"> At: {{ $reservation->events->city }}</a>
                                                     </li>
+                                                    <li><i class="fa-solid fa-calculator"></i>
+                                                        <a href="javascript:void(0)"> quantity: {{ $reservation->quantity }}</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
